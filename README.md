@@ -16,11 +16,12 @@ npm install --save ms-time-tools
 ```js
 const  mtt = require('ms-times-tools'); // Import the module
 ```
-## Convert from milliseconds
+## Convert time in milliseconds to string 
 Here is the list of all the arguments available:
 |Parameter|Type|Optional|Default|Description|
 |:-:|:-:|:-:|:-:|:-:|
 |time|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in milliseconds to convert into string|
+|:-:|:-:|:-:|:-:|:-:|
 |format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|Y-MO-W-D-H-M-S-MS|Format and order of time returned|
 |lang|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|en|Language of time unities|
 |long|[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)|✅|false|Returns the whole word (not abbreviations)|
