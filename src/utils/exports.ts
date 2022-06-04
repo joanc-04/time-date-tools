@@ -1,6 +1,6 @@
-export * from './class/Console';
-export * from './class/Client';
+export * from './class/Console.js';
+export * from './class/Client.js';
 
-export * from './types/Time';
+export * from './types/Time.js';
 
-export * from '../index';
+export * from '../index.js';

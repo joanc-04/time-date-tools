@@ -1,14 +1,14 @@
-import { Console, client, formatDateOptions } from '../exports';
+import { Console, client, formatDateOptions } from '../exports.js';
+import l from '../res/errors/message.json';
 
 const formatDateOptionsDefault = {
     lang: "en",
-    format: null,
-    valueNull: true,
+    format: null
 }
 
-async function formatDate(time: number, options: formatDateOptions) {
+export function formatDate(time: number, options: formatDateOptions) {
 
-    if (typeof(time) != "number") return Console.error('error');
+    if (!time) return Console.error(l.ERROR_MISSING_ARGUMENT_TIME);
 
     for (let i of Object.entries(formatDateOptionsDefault)) if ((<any>options)?.[i[0]] == undefined) (<any>options)!![i[0]] = i[1];
 
@@ -113,5 +113,3 @@ async function formatDate(time: number, options: formatDateOptions) {
     return timeKeys.join('');
 
 }
-
-module.exports = formatDate;

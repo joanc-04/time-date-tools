@@ -1,6 +1,0 @@
-{
-    "ERROR_MISSING_ARGUMENT_TIME": "The argument 'time' is required.",
-    "ERROR_TIME_TYPE_NOT_A_NUMBER": "The argument 'time' must be a number type.",
-    "ERROR_TIME_TYPE_NOT_A_STRING": "The argument 'time' must be a string type.",
-    "ERROR_VALUE_NULL_TYPE_NOT_A_BOOLEAN": "The argument 'valueNull' must be a boolean type."
-}

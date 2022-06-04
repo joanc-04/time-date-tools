@@ -1,4 +1,4 @@
-import { Console, client, formatTimeOptions } from '../exports';
+import { Console, client, formatTimeOptions } from '../exports.js';
 import l from '../res/errors/message.json';
 
 const timesInMilliseconds = [31556926000, 2629800000, 86400000, 3600000, 60000, 1000, 1];
@@ -15,10 +15,9 @@ const formatTimeOptionsDefault = {
  * @param {*} options The options of the format returned
  * @returns The time with the format you want
  */
-function formatTime(time: number, options: formatTimeOptions) {
+export function formatTime(time: number, options: formatTimeOptions) {
 
     if (!time) return Console.error(l.ERROR_MISSING_ARGUMENT_TIME);
-    if (isNaN(time)) return Console.error(l.ERROR_TIME_TYPE_NOT_A_NUMBER);
 
     time = Math.round(time);
 
@@ -64,7 +63,7 @@ function formatTime(time: number, options: formatTimeOptions) {
     if (typeof(format) != 'string') return obj;
     else format = format.trim();
 
-    if (!['undefined', 'boolean'].includes(typeof(options.valueNull))) return Console.error(l.ERROR_VALUE_NULL_TYPE_NOT_A_BOOLEAN);
+    // if (!['undefined', 'boolean'].includes(typeof(options.valueNull))) return Console.error(l.ERROR_VALUE_NULL_TYPE_NOT_A_BOOLEAN);
 
     const regex = /YY|MMOO|DD|HH|MMSS|MM|SS|yy|mmoo|dd|hh|mmss|mm|ss|Y|MO|D|H|MS|M|S|y|mo|d|h|ms|m|s/,
         separators = format.split(regex).slice(1);
@@ -90,8 +89,8 @@ function formatTime(time: number, options: formatTimeOptions) {
         timeKeys.push(isMany || null_ ? match : '');
         values.push(isMany || null_ ? value : '');
 
-        if (options.valueNull && separator.includes('[')) null_ = false;
-        if (options.valueNull && separator.includes(']')) null_ = true;
+        if (separator.includes('[')) null_ = true;
+        if (separator.includes(']')) null_ = false;
 
     }
 
@@ -103,5 +102,3 @@ function formatTime(time: number, options: formatTimeOptions) {
     return timeKeys.join('').replace(/^([^0-9]+)/, '').replace(/\[|\]/g, '');
 
 };
-
-module.exports = formatTime;

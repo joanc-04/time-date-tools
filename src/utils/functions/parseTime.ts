@@ -1,4 +1,4 @@
-import { Console, client, formatTimeOptions } from '../exports';
+import { Console, client, formatTimeOptions } from '../exports.js';
 import l from '../res/errors/message.json';
 
 const timesInMilliseconds = [31556926000, 2629800000, 604800000, 86400000, 3600000, 60000, 1000, 1];
@@ -13,15 +13,15 @@ const parseTimeOptions = {
  * @param {*} options The options of the time returned
  * @returns The time in milliseconds or seconds
  */
-function parseTime(mstime: string, options = parseTimeOptions) {
-    
+export function parseTime(mstime: string, options = parseTimeOptions) {
+
     const { client } = require('../../index.js');
-    
+
     if (!mstime) return Console.error(l.ERROR_MISSING_ARGUMENT_TIME)
 
     const splitTime: any = mstime.trim().toLowerCase().match(/\d+\s?[a-z]+/g);
     if (!splitTime?.[0]) return 0;
-    
+
     let times = 0;
     for (let i = 0; i < splitTime.length; i ++) {
         if (!isNaN(splitTime[i]) && !splitTime[i].match(/\d/)?.[0]) {
@@ -33,12 +33,12 @@ function parseTime(mstime: string, options = parseTimeOptions) {
     for (const element of splitTime) {
 
         const number = Number(element.match(/^\d+/g));
-        if (isNaN(number)) continue;        
+        if (isNaN(number)) continue;
 
         const key = element.match(/[a-z]/g)?.[0];
 
         let index;
-        Object.values(client.lang.timeKeys).find((e: any) => e.find((f: any, i: number) => {
+        Object.values(client.lang).find((e: any) => e.timeKeys.find((f: any, i: number) => {
             if (f.includes(key)) index = i;
         }));
 
@@ -49,5 +49,3 @@ function parseTime(mstime: string, options = parseTimeOptions) {
     return options.msOff ? times / 1000 : times;
 
 }
-
-module.exports = parseTime;
