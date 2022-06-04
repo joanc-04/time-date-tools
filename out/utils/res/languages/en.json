@@ -1,0 +1,23 @@
+{
+    "timeKeys": [
+        ["year", "years", "y"],
+        ["month", "months", "mo"],
+        ["week", "weeks", "w"],
+        ["day", "days", "d"],
+        ["hour", "hours", "h"],
+        ["minute", "minutes", "m"],
+        ["second", "seconds", "s"],
+        ["millisecond", "milliseconds", "ms"]
+    ],
+    "dateKeys": {
+        "months": [
+            "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"
+        ],
+        "days": [
+            "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
+        ],
+        "daysIndice": [
+            "st", "nd", "rd"
+        ]
+    }
+}
