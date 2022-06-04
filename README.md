@@ -2,7 +2,7 @@
 
 # About
 
-ms-time-tools is a powerful Node.js module that allows you to easily manage time.
+time-date-tools is a powerful Node.js module that allows you to easily manage time and date.
 
 ###  Features
 * [Installation](https://www.npmjs.com/package/ms-time-tools#installation)
