@@ -76,7 +76,7 @@ tdt.formatTime(31556927894,
 ## Convert milliseconds to string date
 The function `formatDate()` converts date in milliseconds to a date in string with the format of your choice.
 ```js
-tdt.formatDate(time, options);
+tdt.formatDate(date, options);
 ```
 <u>Here is the list of all the arguments available:</u>
 |Parameter|Type|Optional|Default|Description|
