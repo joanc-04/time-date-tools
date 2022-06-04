@@ -15,8 +15,10 @@ npm install --save ms-time-tools
 ```
 # Examples
 ```js
-const  tdt = require('time-date-tools'); // Import the module
+const tdt = require('time-date-tools'); // Import the module
 ```
+<br>
+
 ## Convert milliseconds to string time
 The function `formatTime()` converts time in milliseconds to a time in string with the format of your choice.
 ```js
@@ -25,9 +27,9 @@ tdt.formatTime(time, options);
 <u>Here is the list of all the arguments available:</u>
 |Parameter|Type|Optional|Default|Description|
 |:-:|:-:|:-:|:-:|:-:|
-|time|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in milliseconds to convert into string|
-|format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|Y-MO-W-D-H-M-S-MS|Format and order of time returned|
-|lang|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|en|Language of time unities|
+|time|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in milliseconds to convert into string.|
+|format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|undefined|Format of string time returned. If not given, returns all the information about the time.|
+|lang|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|en|Language of time unities ('en' or 'fr').|
 
 <u>Some usage examples:</u>
 
@@ -69,6 +71,7 @@ tdt.formatTime(31556927894,
 ); // 1 year, 01.894
 
 ```
+<br>
 
 ## Convert milliseconds to string date
 The function `formatDate()` converts date in milliseconds to a date in string with the format of your choice.
@@ -78,9 +81,9 @@ tdt.formatDate(time, options);
 <u>Here is the list of all the arguments available:</u>
 |Parameter|Type|Optional|Default|Description|
 |:-:|:-:|:-:|:-:|:-:|
-|time|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in milliseconds to convert into string|
-|format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|Y-MO-W-D-H-M-S-MS|Format and order of time returned|
-|lang|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|en|Language of time unities|
+|time|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Date in milliseconds to convert into string.|
+|format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|undefined|Format of string date returned. If not given, returns all the information about the date.|
+|lang|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|en|Language of date unities ('en' or 'fr').|
 
 Some usage examples:
 
@@ -109,7 +112,7 @@ tdt.formatDate(Date.now(), {});
     monthsFullNumber: '06',
     years: '22',
     yearsFull: 2022
-  }
+}
 */
 
 tdt.formatDate(1654349360501,
@@ -134,5 +137,30 @@ tdt.formatTime(1623324464826,
         format: 'DD d MMOO Y',
     }
 ); // friday 10 june 2021
+
+```
+<br>
+
+## Convert string time to milliseconds time
+The function `parseTime()` converts time in string to a time in milliseconds.
+```js
+tdt.parseTime(time, options);
+```
+<u>Here is the list of all the arguments available:</u>
+|Parameter|Type|Optional|Default|Description|
+|:-:|:-:|:-:|:-:|:-:|
+|time|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in string to convert into milliseconds.|
+|msOff|[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|false|Returns the time in seconds instead of milliseconds.|
+
+Some usage examples:
+
+
+```js
+
+tdt.parseTime('2 days', {}); // 172800000
+
+tdt.parseTime('5m 3s',
+    { msOff: true }
+); // 303
 
 ```
