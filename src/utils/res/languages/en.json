@@ -17,7 +17,7 @@
             "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
         ],
         "daysIndice": [
-            "st", "nd", "rd"
+            "st", "nd", "rd", "th"
         ]
     }
 }

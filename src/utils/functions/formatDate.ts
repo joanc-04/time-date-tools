@@ -41,9 +41,9 @@ export function formatDate(dateInMilliseconds: number, options: formatDateOption
 
         days: textLanguage.days[date.getDay()],
         daysNumber: date.getDate(),
-        daysNumberIndice: date.getDate() + (date.getDate() <= 3 ? textLanguage.daysIndice[date.getDate()] : ''),
+        daysNumberIndice: date.getDate() + (date.getDate() <= 3 ? textLanguage.daysIndice[date.getDate()] : textLanguage.daysIndice[3]),
         daysFullNumber: ("00" + date.getDate()).slice(-2),
-        daysFullNumberIndice: ("00" + date.getDate()).slice(-2) + (date.getDate() <= 3 ? textLanguage.daysIndice[date.getDate()] : ''),
+        daysFullNumberIndice: ("00" + date.getDate()).slice(-2) + (date.getDate() <= 3 ? textLanguage.daysIndice[date.getDate()] : textLanguage.daysIndice[3]),
 
         months: textLanguage.months[date.getMonth()],
         monthsNumber: date.getMonth() + 1,
