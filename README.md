@@ -165,3 +165,63 @@ tdt.parseTime('5m 3s',
 ); // 303
 
 ```
+
+<br>
+
+# Datas
+
+Availables tokens for the date format.
+
+|Token|Description|Output|
+|:-:|:-:|:-:|
+|Y|four-digit year|2022|
+|y|two-digit year|22|
+|MMOO|month name|January|
+|MO|two-digit month|01|
+|mo|month|1|
+|DD|day name|Monday|
+|D|two-digit day|01|
+|D-|two-digit day with indice|01st|
+|d|day|1|
+|d-|one-digit day with indice|1st|
+|H|two-digit hour|09, 14|
+|h|hour|9, 14|
+|M|two-digit minute|05, 34|
+|m|minute|5, 34|
+|S|two-digit second|02, 58|
+|s|second|2, 58|
+|MS|three-digit millisecond|009, 158|
+|ms|millisecond|9, 158|
+
+Availables tokens for the time format.
+
+|Token|Description|Output|
+|:-:|:-:|:-:|
+|YY|year unity (long)|year, years|
+|yy|year unity (short)|y|
+|Y|four-digit year|2022|
+|y|two-digit year|22|
+|MMOO|month unity (long)|month, months|
+|mmoo|month unity (short)|m|
+|MO|two-digit month|01|
+|mo|month|1|
+|DD|day unity (long)|day, days|
+|dd|day unity (short)|d|
+|D|two-digit day|01|
+|d|day|1|
+|HH|hour unity (long)|hour, hours|
+|hh|hour unity (short)|h|
+|H|two-digit hour|09, 14|
+|h|hour|9, 14|
+|MM|minute unity (long)|minute, minutes|
+|mm|minute unity (short)|m|
+|M|two-digit minute|05, 34|
+|m|minute|5, 34|
+|SS|second unity (long)|seconds, second|
+|ss|second unity (short)|s|
+|S|two-digit second|02, 58|
+|s|second|2, 58|
+|MMSS|millisecond unity (long)|millisecond, milliseconds|
+|mmss|millisecond unity (short)|ms|
+|MS|three-digit millisecond|009, 158|
+|ms|millisecond|9, 158|
