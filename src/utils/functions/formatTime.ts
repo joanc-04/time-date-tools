@@ -5,8 +5,7 @@ const timesInMilliseconds = [31556926000, 2629800000, 86400000, 3600000, 60000, 
 
 const formatTimeOptionsDefault = {
     lang: "en",
-    format: null,
-    valueNull: true,
+    format: null
 }
 
 /**

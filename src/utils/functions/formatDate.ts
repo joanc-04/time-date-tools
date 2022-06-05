@@ -6,13 +6,19 @@ const formatDateOptionsDefault = {
     format: null
 }
 
-export function formatDate(time: number, options: formatDateOptions) {
+/**
+ *
+ * @param {*} dateInMilliseconds The date in milliseconds to convert into any format
+ * @param {*} options The options of the format returned
+ * @returns The date with the format you want
+ */
+export function formatDate(dateInMilliseconds: number, options: formatDateOptions) {
 
-    if (!time) return Console.error(l.ERROR_MISSING_ARGUMENT_TIME);
+    if (!dateInMilliseconds) return Console.error(l.ERROR_MISSING_ARGUMENT_TIME);
 
     for (let i of Object.entries(formatDateOptionsDefault)) if ((<any>options)?.[i[0]] == undefined) (<any>options)!![i[0]] = i[1];
 
-    const date = new Date(time);
+    const date = new Date(dateInMilliseconds);
     if (!date) return Console.error('Time is invalid');
 
     const textLanguage = client.lang[options.lang || formatDateOptionsDefault.lang]?.dateKeys;
