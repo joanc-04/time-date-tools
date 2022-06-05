@@ -32,6 +32,10 @@ tdt.formatTime(time, options);
 |format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|undefined|Format of string time returned. If not given, returns all the information about the time.|
 |lang|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|en|Language of time unities ('en' or 'fr').|
 
+<br>
+
+You can enclose certain parts of your format with brackets `[]`, the values contained in these brackets will be displayed even if they are null.
+
 <u>Some usage examples:</u>
 
 
