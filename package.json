@@ -1,6 +1,6 @@
 {
   "name": "time-date-tools",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "",
   "main": "./out/index.js",
   "types": "./typings/index.d.ts",

@@ -12,7 +12,7 @@ time-date-tools is a powerful Node.js module that allows you to easily manage ti
 
 # Installation
 ```
-npm install --save ms-time-tools
+npm install --save time-date-tools
 ```
 # Examples
 ```js
