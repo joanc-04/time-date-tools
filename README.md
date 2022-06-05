@@ -5,9 +5,10 @@
 time-date-tools is a powerful Node.js module that allows you to easily manage time and date.
 
 ###  Features
-* [Installation](https://www.npmjs.com/package/ms-time-tools#installation)
-* [Convert from milliseconds](https://www.npmjs.com/package/ms-time-tools#convert-from-milliseconds)
-* [Convert from string](https://www.npmjs.com/package/ms-time-tools#convert-from-string)
+* [Installation](https://github.com/joanc-04/time-date-tools/#installation)
+* [Convert milliseconds to string time](https://github.com/joanc-04/time-date-tools/#installation)
+* [Convert milliseconds to string date](https://github.com/joanc-04/time-date-tools/#convert-milliseconds-to-string-date)
+* [Convert string time to milliseconds time](https://github.com/joanc-04/time-date-tools/#convert-string-time-to-milliseconds-time)
 
 # Installation
 ```
