@@ -1,5 +1,7 @@
 # About
 `time-date-tools` is a powerful Node.js module that allows you to **easily manage time** and **date**. You can configure a lot of features to not have date and time issues anymore.
+<br>
+If you have any question, you can join our community on [**Discord**](https://discord.gg/bUnFAccHmJ).
 
 ###  Features
 - [Installation](https://github.com/joanc-04/time-date-tools/#installation)
