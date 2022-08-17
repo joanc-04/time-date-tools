@@ -87,7 +87,7 @@ Available token for the time format:
 Now the settings ready, you can call the function `format()` which convert a time in milliseconds to a string with the format of your choice.
 
 ```ts
-const TimeSettingsFormat = new TimeSettings({ lang: "en", format: "Y YYYY, M MMMM, W WWWW, D dddd, h HH, m MM, s SS, sss SSSS" });
+const TimeSettingsFormat = new TimeSettings({ lang: "en", format: "Y YYYY, M MMMM, W WWWW, D DDDD, h HH, m MM, s SS, sss SSSS" });
 TimeSettingsFormat.format(timeInMilliseconds);
 ```
 Available arguments in the `format()` function:
@@ -140,13 +140,13 @@ Now the settings ready, you can call the function `parse()` which convert a time
 
 ```ts
 const TimeSettingsParse = new TimeSettings();
-TimeSettingsParse.parse(timeInMilliseconds);
+TimeSettingsParse.parse(timeInString);
 ```
 Available arguments in the `parse()` function:
 
 |Parameter|Type|Optional|Default|Description|
 |:-:|:-:|:-:|:-:|:-:|
-|timeInMilliseconds|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in milliseconds to convert into a string.|
+|timeInString|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in string to convert into milliseconds.|
 
 <br>
 <br>
@@ -172,7 +172,7 @@ settings.parse("2 y, 4 months + 22 days + 9 hours"); // 75566252000
 
 Before call the `format()` function, you have to create a class called `DateSettings`. This function allows you to save the configuration you want in a variable, instead of rewrite everything.
 ```ts
-new TimeSettings(options);
+new DateSettings(options);
 ```
 Available options in the configuration for the `format()` function:
 

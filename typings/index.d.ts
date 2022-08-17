@@ -4,7 +4,7 @@ export interface OptionsDateSettings {
 }
 
 export interface OptionsTimeSettings {
-    format?: string | "Y YYYY, M MMMM, W WWWW, D dddd, h HH, m MM, s SS, sss SSSS";
+    format?: string | "Y YYYY, M MMMM, W WWWW, D DDDD, h HH, m MM, s SS, sss SSSS";
     lang?: string | "en";
     precision?: boolean | "true";
     long?: boolean | "true";

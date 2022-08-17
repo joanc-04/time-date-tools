@@ -10,7 +10,7 @@ export class TimeSettings {
     private long;
 
     constructor(options: OptionsTimeSettings) {
-        this.#format = options?.format || "Y YYYY, M MMMM, W WWWW, D dddd, h HH, m MM, s SS, sss SSSS";
+        this.#format = options?.format || "Y YYYY, M MMMM, W WWWW, D DDDD, h HH, m MM, s SS, sss SSSS";
         this.lang = options?.lang || "en";
         this.precision = <any>(options?.precision != false) | 0;
         this.long = <any>(options?.long != false) | 0;
@@ -103,7 +103,7 @@ export class TimeSettings {
 
             const index = ((typeof (<any>obj)[match[0] || ""] == "string") ? unities : values).indexOf(match[0]);
 
-            if (write || ((<any>obj)[match[0]] && !!((<any>obj)[values[index]]))) {
+            if (write || ((<any>obj)[match[0]] && (!!((<any>obj)[values[index]])) || (!!((<any>obj)[unities[index]])))) {
                 arrayTime.push(match[0]);
                 if (arrayTime.length != 1) arraySeparators.push(separator);
             }
@@ -111,6 +111,7 @@ export class TimeSettings {
         }
 
         let formatReplaced = "";
+
         for (let i in arraySeparators) formatReplaced += arraySeparators[i] + (arrayTime[i] ? (<any>obj)[arrayTime[i] || ''] : "");
 
         return formatReplaced.replace(/(\[|])/g, '') + separators[separators.length - 1];
