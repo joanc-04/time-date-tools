@@ -1,6 +1,13 @@
-interface formatTimeOptions {
-    lang?: 'fr' | 'en';
-    format?: string | undefined;
+export interface OptionsDateSettings {
+    format?: string | "DD/MM/YYYY, HH:mm:ss.SSS";
+    lang?: string | "en";
+}
+
+export interface OptionsTimeSettings {
+    format?: string | "Y YYYY, M MMMM, W WWWW, D dddd, h HH, m MM, s SS, sss SSSS";
+    lang?: string | "en";
+    precision?: boolean | "true";
+    long?: boolean | "true";
 }
 
 /**
@@ -8,33 +15,40 @@ interface formatTimeOptions {
  * @param time The time in milliseconds to convert into any format
  * @param options The options of the format returned
  */
-export function formatTime(time: number, options?: formatTimeOptions): string;
 
 
+export class TimeSettings {
 
+    /**
+     *
+     * @param options The settings of the Time class.
+     */
+    constructor(options: OptionsTimeSettings);
 
-interface parseTimeOptions {
-    msOff?: boolean;
+    /**
+     *
+     * @param time The time in milliseconds to convert in string.
+     */
+    format(time: number): string;
+
+    /**
+     *
+     * @param time The time in string to convert in milliseconds.
+     */
+    parse(time: string): number;
 }
 
-/**
- *
- * @param time The time in string to convert in milliseconds or seconds
- * @param options The options of the time returned
- */
-export function parseTime(time: string, options?: parseTimeOptions): number;
+export class DateSettings {
 
+    /**
+     *
+     * @param options The settings of the Date class.
+     */
+    constructor(options: OptionsDateSettings);
 
-
-
-interface formatDateOptions {
-    lang?: 'fr' | 'en';
-    format?: string | undefined;
+    /**
+     *
+     * @param date The date in milliseconds to convert in string.
+     */
+    format(date: number): string;
 }
-
-/**
- *
- * @param {*} dateInMilliseconds The date in milliseconds to convert into any format
- * @param {*} options The options of the format returned
- */
-export function formatTime(dateInMilliseconds: number, options: formatDateOptions): string;

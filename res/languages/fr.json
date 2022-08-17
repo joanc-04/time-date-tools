@@ -1,6 +1,6 @@
 {
     "timeKeys": [
-        ["année", "années", "an"],
+        ["année", "années", "a"],
         ["mois", "mois", "mo"],
         ["semaine", "semaines", "se"],
         ["jour", "jours", "j"],
@@ -11,7 +11,7 @@
     ],
     "dateKeys": {
         "months": [
-            "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "decembre"
+            "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"
         ],
         "days": [
             "dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"

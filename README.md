@@ -1,231 +1,246 @@
-
-
 # About
-
-time-date-tools is a powerful Node.js module that allows you to easily manage time and date.
+`time-date-tools` is a powerful Node.js module that allows you to **easily manage time** and **date**. You can configure a lot of features to not have date and time issues anymore.
 
 ###  Features
-* [Installation](https://github.com/joanc-04/time-date-tools/#installation)
-* [Convert milliseconds to string time](https://github.com/joanc-04/time-date-tools/#installation)
-* [Convert milliseconds to string date](https://github.com/joanc-04/time-date-tools/#convert-milliseconds-to-string-date)
-* [Convert string time to milliseconds time](https://github.com/joanc-04/time-date-tools/#convert-string-time-to-milliseconds-time)
+- [Installation](https://github.com/joanc-04/time-date-tools/#installation)
+- [Importation](https://github.com/joanc-04/time-date-tools/#importation)
+- [Time](https://github.com/joanc-04/time-date-tools/#time)
+  * [Format](https://github.com/joanc-04/time-date-tools/#format-time) : Convert a time in milliseconds to a time in string.
+  * [Parse](https://github.com/joanc-04/time-date-tools/#parse-time) : Convert a time in string to a time in milliseconds.
+- [Date](https://github.com/joanc-04/time-date-tools/#date)
+  * [Format](https://github.com/joanc-04/time-date-tools/#format-date) : Convert a date in milliseconds to a date in string.
 
 # Installation
 ```
-npm install --save time-date-tools
+$ npm install --save time-date-tools
 ```
-# Examples
-```js
-const tdt = require('time-date-tools'); // Import the module
+
+# Usage
+### Importation
+```ts
+import tdt from "time-date-tools";          // Es Modules
+const tdt = require("time-date-tools");     // CommondJS
 ```
+
 <br>
 
-## Convert milliseconds to string time
-The function `formatTime()` converts time in milliseconds to a time in string with the format of your choice.
-```js
-tdt.formatTime(time, options);
+## Time
+
+### Format Time
+
+<br>
+
+> #### Class *TimeSettings* for the format:
+
+Before call the `format()` function, you have to create a class called `TimeSettings`. This function allows you to save the configuration you want in a variable, instead of rewrite everything.
+```ts
+new TimeSettings(options);
 ```
-<u>Here is the list of all the arguments available:</u>
+Available options in the configuration for the `format()` function:
+
 |Parameter|Type|Optional|Default|Description|
 |:-:|:-:|:-:|:-:|:-:|
-|time|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in milliseconds to convert into string.|
-|format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|undefined|Format of string time returned. If not given, returns all the information about the time.|
 |lang|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|en|Language of time unities ('en' or 'fr').|
+|format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|Y YYYY, M MMMM, W WWWW, D dddd, h HH, m MM, s SS, sss SSSS|Format* of the string time.|
+|precision|[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)|✅|true|If false, it will round and return the bigger nonnull unity. Else, all the unities are returned.|
+|long|[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)|✅|true|Complete the previous argument, if false, it will return the short unity. Else it will return the long unity.|
+
+\*Format: By default, the null unities aren't displayed. If you want to display them, you can surround some parts of the format by `[` and `]`.
 
 <br>
+Available token for the time format:
 
-You can enclose certain parts of your format with brackets `[]`, the values contained in these brackets will be displayed even if they are null.
+|Token|Meaning|Examples of output|
+|:-:|:-:|:-:|
+|YYYY|Year unity|years, year|
+|yyyy|Year unity (short)|y|
+|Y|Year value|1|
+|MMMM|Month unity|months, month|
+|mmmm|Month unity (short)|mo|
+|M|Month value|2|
+|WWWW|Week unity|weeks, week|
+|wwww|Week unity (short)|w|
+|W|Week value|3|
+|DDDD|Day unity|days, day|
+|dddd|Day unity (short)|d|
+|D|Day value|4|
+|HH|Hour unity|hours, hour|
+|hh|Hour unity (short)|h|
+|h|Hour value|5|
+|MM|Minute unity|minutes, minute|
+|mm|Minute unity (short)|m|
+|m|Minute value|6|
+|SS|Second unity|seconds, second|
+|ss|Second unity (short)|s|
+|sss|Second value|7|
+|SSSS|Millisecond unity|milliseconds, millisecond|
+|ssss|Millisecond unity (short)|ms|
+|sss|Millisecond value|8|
 
-<u>Some usage examples:</u>
-
-
-```js
-
-tdt.formatTime(654686145655, {});
-/*
-{
-    y: 20, mo: 8, d: 29, h: 1, m: 0, s: 25, ms: 655,
-    YY: 'years', MMOO: 'months', DD: 'days', HH: 'hour', MM: 'minute', SS: seconds', MMSS: 'milliseconds',
-    Y: '20', MO: '08', D: '29', H: '01', M: '00', S: '25', MS: '655',
-    yy: 'y', mmoo: 'mo', dd: 'd', hh: 'h', mm: 'm', ss: 's', mmss: 'ms'
-}
-*/
-
-tdt.formatTime(65364,
-    { format: 'M:S.MS' }
-); // 01:05.364
-
-tdt.formatTime(
-    449155098,
-    {
-        format: 'D DD, h:M:S.ms',
-	lang: 'en'
-    }
-); // 05 days, 4:45:55.98
-
-tdt.formatTime(31556927894,
-    {
-        format: '[y YY, mo MMOO,] d DD H:M:S.MS',
-    }
-); // 1 year, 0 day 00:00:01.894
-
-tdt.formatTime(31556927894,
-    {
-        format: 'y YY, mo MMOO, d DD H:M:S.MS',
-    }
-); // 1 year, 01.894
-
-```
+<br>
 <br>
 
-## Convert milliseconds to string date
-The function `formatDate()` converts date in milliseconds to a date in string with the format of your choice.
-```js
-tdt.formatDate(date, options);
+> #### Function *format()*:
+
+Now the settings ready, you can call the function `format()` which convert a time in milliseconds to a string with the format of your choice.
+
+```ts
+const TimeSettingsFormat = new TimeSettings({ lang: "en", format: "Y YYYY, M MMMM, W WWWW, D dddd, h HH, m MM, s SS, sss SSSS" });
+TimeSettingsFormat.format(timeInMilliseconds);
 ```
-<u>Here is the list of all the arguments available:</u>
+Available arguments in the `format()` function:
+
 |Parameter|Type|Optional|Default|Description|
 |:-:|:-:|:-:|:-:|:-:|
-|time|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Date in milliseconds to convert into string.|
-|format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|undefined|Format of string date returned. If not given, returns all the information about the date.|
+|timeInMilliseconds|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in milliseconds to convert into a string.|
+
+<br>
+<br>
+
+> #### Examples:
+```ts
+const settings_1 = new TimeSettings({ lang: "en", format: "Y YYYY, M MMMM, W WWWW, D dddd, h HH, m MM, s SS, sss SSSS" });
+const settings_2 = new TimeSettings({ lang: "en", format: "[Y YYYY, M MMMM,] W WWWW, D dddd, h HH, m MM, s SS, sss SSSS" });
+
+settings_1.format(361410); // 6 minutes, 1 second, 410 milliseconds
+settings_2.format(361410); // 0 year, 0 month, 6 minutes, 1 second, 410 milliseconds
+
+
+const settings_3 = new TimeSettings({ lang: "en", precision: false, long: true });
+const settings_4 = new TimeSettings({ lang: "en", precision: false, long: false });
+const settings_5 = new TimeSettings({ lang: "en", precision: true, long: true });
+
+settings_3.format(486000000); // 6 days
+settings_4.format(486000000); // 6d
+settings_5.format(486000000); // 0 year, 0 month, 0 week, 5 days, 15 hours, 0 minute, 0 second, 0 millisecond
+
+```
+<br>
+
+### Parse Time
+
+<br>
+
+> #### Class *TimeSettings* for the parse:
+
+Before call the `parse()` function, you have to create a class called `TimeSettings`. This function allows you to save the configuration you want in a variable, instead of rewrite everything.
+```ts
+new TimeSettings();
+```
+There is no available option for the `parse()` function. You can put the same options as for the `format()` function, but it won't change anything for the result.
+
+<br>
+<br>
+
+> #### Function *parse()*:
+
+Now the settings ready, you can call the function `parse()` which convert a time in string to milliseconds.
+
+```ts
+const TimeSettingsParse = new TimeSettings();
+TimeSettingsParse.parse(timeInMilliseconds);
+```
+Available arguments in the `parse()` function:
+
+|Parameter|Type|Optional|Default|Description|
+|:-:|:-:|:-:|:-:|:-:|
+|timeInMilliseconds|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in milliseconds to convert into a string.|
+
+<br>
+<br>
+
+> #### Examples:
+```ts
+const settings = new TimeSettings();
+
+settings.parse("3 minutes and 8 seconds"); // 188000
+settings.parse("2 y, 4 months + 22 days + 9 hours"); // 75566252000
+```
+
+
+<br>
+
+## Date
+
+### Format Date
+
+<br>
+
+> #### Class *DateSettings* for the format:
+
+Before call the `format()` function, you have to create a class called `DateSettings`. This function allows you to save the configuration you want in a variable, instead of rewrite everything.
+```ts
+new TimeSettings(options);
+```
+Available options in the configuration for the `format()` function:
+
+|Parameter|Type|Optional|Default|Description|
+|:-:|:-:|:-:|:-:|:-:|
 |lang|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|en|Language of date unities ('en' or 'fr').|
+|format|[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|DD/MM/YYYY, HH:mm:ss.SSS|Format* of the string date.|
 
-Some usage examples:
+*Format: If you want to dodge some words in the format string, you can surround them with `[` and `]`. It can be useful if you want to format a date, you can refer to the examples.
 
+<br>
+Available token for the date format:
 
-```js
+|Token|Meaning|Examples of output|
+|:-:|:-:|:-:|
+|YYYY|Four-digit year|1970, 2022|
+|YY|Two-digit year|70, 22|
+|MMMM|Month name (long)|January, December|
+|MMM|Month name (short)|Jan, Dec|
+|MM|Two-digit month|01, 12|
+|M|One-digit month|1, 12|
+|dddd|Day of week (long)|monday, sunday|
+|ddd|Day of week (short - three-digit)|mon, sun|
+|dd|Day of week (short - two-digit)|mo, su|
+|DDD|Ordinal notation of date|1st, 2nd, 3rd, 4th|
+|DD|Two-digit date|01, 31|
+|D|One-digit date|1, 31|
+|HH|Two-digit 24-hour|01, 23|
+|H|One-digit 24-hour|1, 23|
+|hh|Two-digit 12-hour|01, 11|
+|h|One-digit 12 hour|1, 11|
+|mm|Two-digit minute|01, 59|
+|m|One-digit minute|1, 59|
+|ss|Two-digit second|01, 59|
+|s|One-digit second|1, 59|
+|SSS|Three-digit millisecond|001, 999|
+|SS|Two-digit millisecond|01, 99|
+|S|One-digit millisecond|1, 9|
+|R|Roman year|MMXXII|
+|AA|Meridiem (uppercase with ellipsis)|A.M., P.M.|
+|A|Meridiem (uppercase)|AM, PM|
+|aa|Meridiem (lowercase with ellipsis)|a.m., p.m.|
+|a|Meridiem|am, pm|
 
-tdt.formatDate(Date.now(), {});
-/*
-{
-    date: 2022-06-04T13:28:31.790Z,
-    milliseconds: 790,
-    millisecondsFull: '790',
-    seconds: 31,
-    secondsFull: '31',
-    minutes: 28,
-    minutesFull: '28',
-    hours: 15,
-    hoursFull: '15',
-    days: 'sunday',
-    daysNumber: 4,
-    daysNumberIndice: '4',
-    daysFullNumber: '04',
-    daysFullNumberIndice: '04',
-    months: 'june',
-    monthsNumber: 6,
-    monthsFullNumber: '06',
-    years: '22',
-    yearsFull: 2022
-}
-*/
-
-tdt.formatDate(1654349360501,
-    { format: 'M:S.MS' }
-); // 29:44.883
-
-tdt.formatTime(Date.now(),
-    {
-        format: 'DD D/MO/Y at H:M:S.MS',
-        lang: 'en'
-    }
-); // sunday 04/06/2022 at 15:31:00.760
-
-tdt.formatDate(0,
-    {
-        format: 'DD d-/MO/Y at H:M:S.MS',
-    }
-); // friday 1nd/01/1970 at 01:00:00.000
-
-tdt.formatTime(1623324464826,
-    {
-        format: 'DD d MMOO Y',
-    }
-); // friday 10 june 2021
-
-```
+<br>
 <br>
 
-## Convert string time to milliseconds time
-The function `parseTime()` converts time in string to a time in milliseconds.
-```js
-tdt.parseTime(time, options);
+> #### Function *format()*:
+
+Now the settings ready, you can call the function `format()` which convert a date in milliseconds to a string with the format of your choice.
+
+```ts
+const DateSettingsFormat = new DateSettings({ lang: "en", format: "DD/MM/YYYY, HH:mm:ss.SSS" });
+DateSettingsFormat.format(dateInMilliseconds);
 ```
-<u>Here is the list of all the arguments available:</u>
+Available arguments in the `format()` function:
+
 |Parameter|Type|Optional|Default|Description|
 |:-:|:-:|:-:|:-:|:-:|
-|time|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Time in string to convert into milliseconds.|
-|msOff|[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)|✅|false|Returns the time in seconds instead of milliseconds.|
-
-Some usage examples:
-
-
-```js
-
-tdt.parseTime('2 days', {}); // 172800000
-
-tdt.parseTime('5m 3s',
-    { msOff: true }
-); // 303
-
-```
+|dateInMilliseconds|[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|❌||Date in milliseconds to convert into a string.|
 
 <br>
+<br>
 
-# Datas
+> #### Examples:
+```ts
+const settings_1 = new DateSettings({ lang: "en", format: "[The] DDD [of] MMMM YYYY [at] hh:mm AA" }); // sunday 14/08/2022, 09:35:33.766
+const settings_2 = new DateSettings({ lang: "en", format: "[It's] HH:mm:ss.SSS" });
 
-Availables tokens for the date format.
+settings_1.format(1660594792908); // The 15th of august 2022 at 10:19 P.M.
+settings_2.format(1660594792908); // It's 22:19:52.908
 
-|Token|Description|Output|
-|:-:|:-:|:-:|
-|Y|four-digit year|2022|
-|y|two-digit year|22|
-|MMOO|month name|January|
-|MO|two-digit month|01|
-|mo|month|1|
-|DD|day name|Monday|
-|D|two-digit day|01|
-|D-|two-digit day with indice|01st|
-|d|day|1|
-|d-|one-digit day with indice|1st|
-|H|two-digit hour|09, 14|
-|h|hour|9, 14|
-|M|two-digit minute|05, 34|
-|m|minute|5, 34|
-|S|two-digit second|02, 58|
-|s|second|2, 58|
-|MS|three-digit millisecond|009, 158|
-|ms|millisecond|9, 158|
-
-Availables tokens for the time format.
-
-|Token|Description|Output|
-|:-:|:-:|:-:|
-|YY|year unity (long)|year, years|
-|yy|year unity (short)|y|
-|Y|four-digit year|2022|
-|y|two-digit year|22|
-|MMOO|month unity (long)|month, months|
-|mmoo|month unity (short)|m|
-|MO|two-digit month|01|
-|mo|month|1|
-|DD|day unity (long)|day, days|
-|dd|day unity (short)|d|
-|D|two-digit day|01|
-|d|day|1|
-|HH|hour unity (long)|hour, hours|
-|hh|hour unity (short)|h|
-|H|two-digit hour|09, 14|
-|h|hour|9, 14|
-|MM|minute unity (long)|minute, minutes|
-|mm|minute unity (short)|m|
-|M|two-digit minute|05, 34|
-|m|minute|5, 34|
-|SS|second unity (long)|seconds, second|
-|ss|second unity (short)|s|
-|S|two-digit second|02, 58|
-|s|second|2, 58|
-|MMSS|millisecond unity (long)|millisecond, milliseconds|
-|mmss|millisecond unity (short)|ms|
-|MS|three-digit millisecond|009, 158|
-|ms|millisecond|9, 158|
+```

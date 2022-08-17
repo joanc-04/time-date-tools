@@ -1,7 +1,9 @@
 test.js
 .npmignore
 .gitignore
+.idea
 src
 tsconfig.json
 package-lock.json
 node_modules
+build.js
